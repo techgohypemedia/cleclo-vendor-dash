@@ -8,7 +8,7 @@ import HowItWorks from "@/components/home/how-it-works";
 import WhyChoose from "@/components/home/why-choose";
 import CallToAction from "@/components/home/call-to-action";
 import Footer from "@/components/home/footer";
-
+import ScrollReveal from "@/components/customer/ScrollReveal";
 export default function VendorLandingPage() {
   return (
     <div className="flex flex-col min-h-screen">
@@ -24,6 +24,7 @@ export default function VendorLandingPage() {
         <CallToAction />
       </main>
       <Footer />
+      <ScrollReveal />
     </div>
   );
 }

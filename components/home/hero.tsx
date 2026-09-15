@@ -1,375 +1,69 @@
-"use client";
-
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
-import {
-  ArrowRight,
-  Play,
-  TrendingUp,
-  Package,
-  Truck,
-  CheckCircle,
-} from "lucide-react";
 import Link from "next/link";
-
-// Floating bubble component
-const FloatingBubble = ({
-  delay,
-  size,
-  left,
-  duration,
-}: {
-  delay: number;
-  size: number;
-  left: string;
-  duration: number;
-}) => (
-  <motion.div
-    className="absolute rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 blur-sm"
-    style={{
-      width: size,
-      height: size,
-      left: left,
-      bottom: "-10%",
-    }}
-    animate={{
-      y: [0, -800],
-      opacity: [0, 0.6, 0],
-      scale: [0.5, 1, 0.8],
-    }}
-    transition={{
-      duration: duration,
-      delay: delay,
-      repeat: Infinity,
-      ease: "easeOut",
-    }}
-  />
-);
-
-// Dashboard mockup component
-const DashboardMockup = () => (
-  <motion.div
-    className="relative"
-    initial={{ opacity: 0, y: 50, rotateX: 15 }}
-    animate={{ opacity: 1, y: 0, rotateX: 0 }}
-    transition={{ duration: 0.8, delay: 0.5 }}
-  >
-    {/* Glow effect behind dashboard */}
-    <div className="absolute inset-0 bg-[var(--kraft-line)] rounded-3xl blur-3xl scale-110 opacity-50" />
-
-    {/* Main dashboard card */}
-    <motion.div
-      className="relative bg-[var(--white)] backdrop-blur-xl rounded-2xl p-6 border border-[var(--line)] shadow-2xl"
-      animate={{ y: [0, -10, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-    >
-      {/* Dashboard header */}
-      <div className="flex items-center gap-3 mb-6">
-        <div className="flex gap-2">
-          <div className="w-3 h-3 rounded-full bg-[var(--stamp)]" />
-          <div className="w-3 h-3 rounded-full bg-[var(--brass)]" />
-          <div className="w-3 h-3 rounded-full bg-[var(--brand-light)]" />
-        </div>
-        <div className="flex-1 h-6 bg-[var(--steam-dim)] rounded-full" />
-      </div>
-
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-4 mb-6">
-        {[
-          {
-            icon: TrendingUp,
-            value: "₹2.5L",
-            label: "Monthly Revenue",
-            color: "bg-[var(--pine)] text-[var(--steam)]",
-          },
-          {
-            icon: Package,
-            value: "156",
-            label: "Today’s Orders",
-            color: "bg-[var(--brand-dark)] text-[var(--steam)]",
-          },
-          {
-            icon: Truck,
-            value: "12",
-            label: "Active Deliveries",
-            color: "bg-[var(--pine-2)] text-[var(--steam)]",
-          },
-        ].map((stat, i) => (
-          <motion.div
-            key={i}
-            className="bg-[var(--kraft)] rounded-xl p-4 text-center border border-[var(--kraft-line)]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8 + i * 0.1 }}
-          >
-            <div
-              className={`w-8 h-8 mx-auto mb-2 rounded-lg ${stat.color} flex items-center justify-center`}
-            >
-              <stat.icon className="w-4 h-4" />
-            </div>
-            <div className="text-lg font-bold text-[var(--pine)] font-display">{stat.value}</div>
-            <div className="text-xs text-[var(--ink-soft)] font-mono">{stat.label}</div>
-          </motion.div>
-        ))}
-      </div>
-
-      {/* Order list preview */}
-      <div className="space-y-3">
-        {[
-          { id: "#1234", status: "Pickup", time: "2 min" },
-          { id: "#1235", status: "Processing", time: "30 min" },
-        ].map((order, i) => (
-          <motion.div
-            key={i}
-            className="flex items-center justify-between bg-[var(--steam)] rounded-lg p-3 border border-[var(--line)]"
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.2 + i * 0.1 }}
-          >
-            <div className="flex items-center gap-3">
-              <div className="w-2 h-2 rounded-full bg-[var(--stamp)] animate-pulse" />
-              <span className="text-[var(--pine)] text-sm font-medium font-mono">
-                {order.id}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-[var(--pine)] bg-[var(--kraft)] px-2 py-1 rounded border border-[var(--kraft-line)]">
-                {order.status}
-              </span>
-              <span className="text-xs text-[var(--ink-soft)] font-mono">{order.time}</span>
-            </div>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-
-    {/* Who It's For Section */}
-    <div className="mt-8">
-      <h3 className="text-[var(--pine)] font-semibold mb-4 pl-1 font-display">Who It&apos;s For</h3>
-      <div className="grid grid-cols-2 gap-3">
-        {[
-          "Independent Laundry Owners",
-          "Multi Outlet Operators",
-          "Backend Vendor Partners",
-          "Franchise Owners",
-        ].map((item, i) => (
-          <motion.div
-            key={i}
-            className="flex items-center gap-2 bg-[var(--white)] rounded-lg p-3 border border-[var(--line)] shadow-sm"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.8 + i * 0.1 }}
-          >
-            <div className="w-1.5 h-1.5 rounded-full bg-[var(--brass)] shrink-0" />
-            <span className="text-xs sm:text-sm font-medium text-[var(--pine)]">
-              {item}
-            </span>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-
-    {/* Floating notification card */}
-    <motion.div
-      className="absolute -top-4 -right-4 bg-[var(--white)] rounded-xl p-4 border border-[var(--brass)] shadow-xl"
-      initial={{ opacity: 0, scale: 0.8, x: 20 }}
-      animate={{ opacity: 1, scale: 1, x: 0 }}
-      transition={{ delay: 1.5, duration: 0.5 }}
-    >
-      <div className="flex items-center gap-3">
-        <div className="w-10 h-10 rounded-full bg-[var(--pine)] flex items-center justify-center text-[var(--brass-dim)]">
-          <CheckCircle className="w-5 h-5" />
-        </div>
-        <div>
-          <div className="text-sm font-semibold text-[var(--pine)]">New Order!</div>
-          <div className="text-xs text-[var(--ink-soft)] font-mono">₹450 • 3 items</div>
-        </div>
-      </div>
-    </motion.div>
-  </motion.div>
-);
+import { Play, ArrowRight } from "lucide-react";
 
 export default function Hero() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    },
-  };
-
   return (
-    <section
-      id="home"
-      className="relative min-h-[90vh] flex items-center overflow-hidden bg-[var(--steam)] text-[var(--ink)]"
-    >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 overflow-hidden">
-        {/* Gradient orbs */}
-        <div className="absolute top-20 left-10 w-96 h-96 bg-primary/20 rounded-full blur-[120px] animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-secondary/20 rounded-full blur-[100px] animate-pulse" />
+    <section className="hero wrap" id="home">
+      <div className="hero-grid">
+        <div>
+          <div className="eyebrow">Who It's For: Independent Laundry Owners, Multi Outlet Operators, Backend Vendor Partners, Franchise Owners</div>
+          <h1>
+            Transform Your Laundry Business Into a<br />
+            <em>Scalable Profit Machine.</em>
+          </h1>
+          <p className="sub">
+            Automate orders, track operations in real time and manage deliveries and payments from one unified platform.
+          </p>
 
-        {/* Floating bubbles */}
-        <FloatingBubble delay={0} size={40} left="10%" duration={8} />
-        <FloatingBubble delay={2} size={25} left="20%" duration={10} />
-        <FloatingBubble delay={1} size={35} left="40%" duration={9} />
-        <FloatingBubble delay={3} size={20} left="60%" duration={11} />
-        <FloatingBubble delay={1.5} size={30} left="80%" duration={8} />
-        <FloatingBubble delay={4} size={45} left="90%" duration={12} />
+          <div className="hero-ctas">
+            <Link href="/signup" className="btn btn-primary">
+              <Play className="w-5 h-5 mr-2" />
+              See How Cleclo Works
+            </Link>
+            <Link href="/signup" className="btn btn-ghost">
+              Start Free Trial
+              <ArrowRight className="w-5 h-5 ml-2" />
+            </Link>
+          </div>
+          <p className="hero-note">Powering leading laundry partners in Delhi NCR & Tier-1 cities.</p>
 
-        {/* Grid pattern overlay */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* Left content */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="space-y-8"
-          >
-            {/* Headline */}
-            <motion.h1
-              variants={itemVariants}
-              className="text-3xl sm:text-3xl md:text-5xl font-bold text-[var(--pine)] leading-tight font-display"
-            >
-              Transform Your Laundry Business Into <br /> a&nbsp;
-              <span className="relative whitespace-nowrap">
-                <span className="text-[var(--stamp)] font-display">Scalable Profit</span>
-                <motion.span
-                  className="absolute -bottom-2 left-0 w-full h-1 bg-[var(--stamp)] rounded-full"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ delay: 1, duration: 0.8 }}
-                />
-              </span>
-              <br />
-              <span className="relative whitespace-nowrap">
-                <span className="text-[var(--stamp)] font-display">Machine</span>
-              </span>
-            </motion.h1>
-
-            {/* Subheadline */}
-            <motion.p
-              variants={itemVariants}
-              className="text-lg md:text-xl text-[var(--ink-soft)] leading-relaxed max-w-xl"
-            >
-              Automate orders, track operations in real time and manage
-              deliveries and payments from one unified platform.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4"
-            >
-              <Button
-                asChild
-                size="lg"
-                className="btn btn-primary"
-              >
-                <Link href="/signup">
-                  <span className="relative z-10 flex items-center gap-2">
-                    <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                    See How Cleclo Works
-                  </span>
-                </Link>
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="btn btn-ghost"
-              >
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </motion.div>
-
-            <div className="flex items-center">
-              <p className="text-sm text-[var(--ink-soft)]">
-                Powering leading laundry partners in Delhi NCR &amp; Tier-1 cities.
-              </p>
+          <div className="trust-row">
+            <div className="item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
+                <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+              </svg>
+              5000+ Vendors
             </div>
+            <div className="item">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+              </svg>
+              4.9/5 Average Vendor Rating
+            </div>
+          </div>
+        </div>
 
-            {/* Trust indicators */}
-            <motion.div
-              variants={itemVariants}
-              className="flex items-center gap-8 pt-4"
-            >
-              <div className="flex items-center gap-2">
-                <div className="flex -space-x-2">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div
-                      key={i}
-                      className="w-8 h-8 rounded-full bg-[var(--pine)] border-2 border-[var(--steam)]"
-                    />
-                  ))}
-                </div>
-                <span className="text-sm font-medium text-[var(--ink-soft)]">5000+ Vendors</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="flex gap-0.5">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <svg
-                      key={i}
-                      className="w-4 h-4 text-[var(--brass)] fill-current"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-                <span className="text-sm font-medium text-[var(--ink-soft)]">
-                  4.9/5 Average Vendor Rating
-                </span>
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* Right content - Dashboard mockup */}
-          <div className="hidden lg:block">
-            <DashboardMockup />
+        <div className="seal-wrap">
+          <svg className="seal-spin" viewBox="0 0 320 320">
+            <defs>
+              <path id="sealCircle" d="M160,160 m-128,0 a128,128 0 1,1 256,0 a128,128 0 1,1 -256,0" />
+            </defs>
+            <circle cx="160" cy="160" r="150" fill="none" stroke="var(--kraft-line)" strokeWidth="1" />
+            <circle cx="160" cy="160" r="128" fill="none" stroke="var(--brass)" strokeWidth="1.4" strokeDasharray="2 6" />
+            <text style={{ fontFamily: "var(--font-mono)" }} fontSize="12.5" letterSpacing="3" fill="var(--pine-2)">
+              <textPath href="#sealCircle" startOffset="0%">
+                INDEPENDENT OWNERS • MULTI OUTLET OPERATORS • BACKEND VENDORS •
+              </textPath>
+            </text>
+          </svg>
+          <div className="seal-center">
+            <div className="num">24/7</div>
+            <div className="lbl">PLATFORM AVAILABILITY</div>
+            <div className="lbl2">SCALABLE OPERATIONS</div>
           </div>
         </div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <div className="w-6 h-10 rounded-full border-2 border-white/30 flex items-start justify-center p-2">
-          <motion.div
-            className="w-1 h-2 rounded-full bg-white/60"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </div>
-      </motion.div>
     </section>
   );
 }
