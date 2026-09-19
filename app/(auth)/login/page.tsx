@@ -4,9 +4,19 @@ import Footer from "@/components/home/footer";
 
 export default function LoginPage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[var(--kraft)] font-sans antialiased text-[var(--pine)]">
+    <div className="flex flex-col min-h-screen bg-[var(--steam)] font-sans antialiased text-[var(--ink)]">
       <Header />
-      <main className="flex-1 flex flex-col items-center justify-center pt-24 pb-16 px-4 sm:px-8">
+      <main className="flex-1 flex flex-col items-center justify-center py-16 px-4 sm:px-6 relative overflow-hidden">
+        {/* Subtle decorative background blur circles matching Cleclo landing pages */}
+        <div 
+          className="absolute top-1/4 -left-20 w-80 h-80 rounded-full pointer-events-none opacity-20 blur-3xl" 
+          style={{ background: "var(--brand-light)" }} 
+        />
+        <div 
+          className="absolute bottom-1/4 -right-20 w-80 h-80 rounded-full pointer-events-none opacity-15 blur-3xl" 
+          style={{ background: "var(--brass)" }} 
+        />
+        
         <LoginForm />
       </main>
       <Footer />

@@ -157,7 +157,7 @@ export function VendorSignupForm() {
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto p-6 sm:p-10 bg-white/90 backdrop-blur-xl rounded-3xl border border-[var(--kraft-line)] shadow-xl shadow-[var(--pine)]/5">
+    <div className="w-full max-w-5xl mx-auto p-6 sm:p-10 bg-white rounded-3xl border border-[var(--line)] shadow-xl relative z-10" style={{ boxShadow: "0 24px 48px -20px rgba(14,51,49,0.18)" }}>
       <div className="w-full">
         <div className="mb-12">
           <div className="flex items-center justify-between">
@@ -169,12 +169,12 @@ export function VendorSignupForm() {
                 {/* Step Circle */}
                 <div className="flex flex-col items-center">
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 relative z-10 ${
+                    className={`w-11 h-11 rounded-full flex items-center justify-center font-semibold text-sm transition-all duration-300 relative z-10 ${
                       step.id < currentStep
-                        ? "bg-emerald-500 text-white shadow-lg shadow-emerald-500/30"
+                        ? "bg-[var(--stamp)] text-white shadow-md"
                         : step.id === currentStep
-                          ? "bg-white text-emerald-600 ring-2 ring-emerald-500 ring-offset-4 shadow-lg shadow-emerald-500/20 font-bold"
-                          : "bg-slate-200 text-slate-500"
+                          ? "bg-[var(--pine)] text-white ring-2 ring-[var(--pine)] ring-offset-4 font-bold shadow-lg shadow-[var(--pine)]/20"
+                          : "bg-[var(--steam-dim)] text-[var(--ink-soft)]"
                     }`}
                   >
                     {step.id < currentStep ? (
@@ -196,8 +196,8 @@ export function VendorSignupForm() {
                   <p
                     className={`text-xs font-semibold mt-3 text-center w-20 transition-colors duration-300 ${
                       step.id <= currentStep
-                        ? "text-slate-900"
-                        : "text-slate-500"
+                        ? "text-[var(--pine)]"
+                        : "text-[var(--ink-soft)]"
                     }`}
                   >
                     {step.title}
@@ -207,10 +207,10 @@ export function VendorSignupForm() {
                 {/* Connector Line */}
                 {index < STEPS.length - 1 && (
                   <div
-                    className={`h-1 flex-1 mx-2 mt-[22px] transition-all duration-300 ${
+                    className={`h-1 flex-1 mx-2 mt-[20px] transition-all duration-300 ${
                       step.id < currentStep
-                        ? "bg-emerald-500 shadow-emerald-500/30 shadow-sm"
-                        : "bg-slate-200"
+                        ? "bg-[var(--pine)] shadow-sm"
+                        : "bg-[var(--line)]"
                     }`}
                   />
                 )}
@@ -222,10 +222,10 @@ export function VendorSignupForm() {
         <div className="p-0">
           {/* Header Section */}
           <div className="mb-10">
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">
+            <h2 className="text-3xl sm:text-4xl font-bold text-[var(--pine)] tracking-tight">
               {STEPS[currentStep - 1].title}
             </h2>
-            <p className="text-slate-600 mt-2 text-base font-medium">
+            <p className="text-[var(--ink-soft)] mt-2 text-base font-medium">
               {STEPS[currentStep - 1].description}
             </p>
           </div>
@@ -853,21 +853,17 @@ export function VendorSignupForm() {
             )}
           </div>
 
-          <div className="flex justify-between gap-4 mt-10 pt-8 border-t-2 border-slate-200">
+          <div className="flex justify-between gap-4 mt-10 pt-8 border-t border-[var(--line)]">
             <button
               onClick={handlePrevious}
               disabled={currentStep === 1}
-              className="px-6 sm:px-8 py-3.5 border-2 border-slate-300 text-slate-900 font-semibold rounded-xl hover:bg-slate-100 hover:border-slate-400 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 text-base"
+              className="btn btn-ghost px-6 sm:px-8 py-3.5 disabled:opacity-40 disabled:cursor-not-allowed justify-center"
             >
               Back
             </button>
             <button
               onClick={handleNext}
-              className={`px-6 sm:px-8 py-3.5 rounded-xl text-base font-semibold transition-all duration-200 ${
-                currentStep === STEPS.length
-                  ? "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40"
-                  : "bg-emerald-500 text-white hover:bg-emerald-600 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40"
-              }`}
+              className="btn btn-primary px-6 sm:px-8 py-3.5 justify-center font-semibold"
             >
               {currentStep === STEPS.length
                 ? "Submit Application"
