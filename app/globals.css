@@ -140,7 +140,7 @@
 /* Customer site CSS rules */
 .mono { font-family: var(--font-mono), monospace; }
 :focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; border-radius: 4px; }
-.wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+.wrap { max-width: var(--maxw); margin-left: auto; margin-right: auto; padding-left: 28px; padding-right: 28px; }
 .eyebrow {
   font-family: var(--font-mono), monospace;
   font-size: 12.5px;
@@ -156,7 +156,7 @@
   content: "";
   width: 18px; height: 1px; background: var(--stamp);
 }
-.section { padding: 96px 0; }
+.section { padding-top: 96px; padding-bottom: 96px; }
 .section-head { max-width: 640px; margin-bottom: 56px; }
 .section-head h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.15; font-weight: 700; color: var(--pine); }
 .section-head p.lede { margin-top: 16px; font-size: 17px; color: var(--ink-soft); }
@@ -229,7 +229,7 @@ header.scrolled { box-shadow: 0 8px 28px -20px rgba(14,51,49,0.35); }
 .mobile-panel .btn-ghost { background: transparent !important; color: var(--pine) !important; border: 1.5px solid var(--pine) !important; }
 
 /* Hero */
-.hero { padding: 76px 0 60px; position: relative; overflow: hidden; }
+.hero { padding-top: 76px; padding-bottom: 60px; position: relative; overflow: hidden; }
 .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
 .hero h1 { font-size: clamp(36px, 5vw, 58px); line-height: 1.04; margin: 0 0 22px; font-weight: 700; color: var(--pine); }
 .hero h1 em { font-style: normal; color: var(--stamp); }
@@ -468,7 +468,19 @@ footer { padding: 72px 0 36px; border-top: 1px solid var(--line); }
   .line-step { flex-direction: row; text-align: left; align-items: flex-start; gap: 14px; }
   .peg { display: none; }
   .kpi-grid, .svc-grid { grid-template-columns: 1fr; }
-  .section { padding: 64px 0; }
+  .section { padding-top: 56px; padding-bottom: 56px; }
+  .hero { padding-top: 44px; padding-bottom: 36px; }
   .download-band { border-radius: 20px; }
   .foot-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .wrap { padding-left: 20px !important; padding-right: 20px !important; }
+  .section { padding-top: 44px; padding-bottom: 44px; }
+  .hero { padding-top: 36px; padding-bottom: 32px; }
+  .mobile-panel { padding: 20px 16px 32px; }
+  .download-band { padding: 32px 18px; border-radius: 18px; }
+  .kpi-card, .svc-card, .ticket, .eco-card, .cov-card, .verify-card { padding: 20px 16px; }
+  .verify-callout { padding: 14px 18px; flex-direction: column; text-align: center; justify-content: center; }
+  .foot-bottom { flex-direction: column; text-align: center; gap: 8px; }
 }
