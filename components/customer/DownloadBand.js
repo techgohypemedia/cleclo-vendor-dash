@@ -6,7 +6,7 @@ export default function DownloadBand() {
           <div className="eyebrow" style={{ color: "var(--brass-dim)" }}>
             Get the app
           </div>
-          <h2>Booking lives in the Cleclo app.</h2>
+          <h2>Bookings live in the Cleclo app.</h2>
           <p>Live tracking, standard pricing and payments — all in one place, for every order you place.</p>
           <div className="download-ctas">
             <a href="#" className="btn btn-primary" style={{ background: "var(--brass)", color: "var(--pine)" }}>
