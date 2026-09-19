@@ -15,6 +15,17 @@ export default function Header() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
   const navLinks = [
     { label: "Home", href: "/" },
     { label: "Features", href: "#features" },
@@ -25,8 +36,8 @@ export default function Header() {
   return (
     <header className={scrolled ? "scrolled" : ""}>
       <div className="wrap nav">
-        <Link href="#top" className="logo">
-          <Image src="/logo.png" alt="Cleclo" width={680} height={171} className="logo-img" priority />
+        <Link href="#top" className="logo shrink-0">
+          <Image src="/logo.png" alt="Cleclo" width={680} height={171} className="logo-img shrink-0" priority />
         </Link>
 
         <nav className="nav-links">
@@ -47,8 +58,8 @@ export default function Header() {
         </div>
 
         <button
-          className="burger"
-          aria-label="Open menu"
+          className={`burger ${menuOpen ? "active" : ""}`}
+          aria-label="Toggle menu"
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((open) => !open)}
         >
@@ -59,16 +70,18 @@ export default function Header() {
       </div>
 
       <div className={`mobile-panel${menuOpen ? " open" : ""}`}>
-        {navLinks.map((link) => (
-          <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
-            {link.label}
-          </Link>
-        ))}
+        <nav className="flex flex-col">
+          {navLinks.map((link) => (
+            <Link key={link.href} href={link.href} onClick={() => setMenuOpen(false)}>
+              {link.label}
+            </Link>
+          ))}
+        </nav>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginTop: '22px' }}>
-          <Link href="/login" className="btn btn-ghost" onClick={() => setMenuOpen(false)}>
+          <Link href="/login" className="btn btn-ghost justify-center" onClick={() => setMenuOpen(false)}>
             Login
           </Link>
-          <Link href="/signup" className="btn btn-primary" onClick={() => setMenuOpen(false)}>
+          <Link href="/signup" className="btn btn-primary justify-center" onClick={() => setMenuOpen(false)}>
             Become a Partner
           </Link>
         </div>

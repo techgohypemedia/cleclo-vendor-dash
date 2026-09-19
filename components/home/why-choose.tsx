@@ -17,7 +17,7 @@ export default function WhyChoose() {
     {
       icon: BarChart3,
       title: "Smart Automation",
-      description: "Automate order routing, delivery workflows and customer updates?\"significantly reducing manual coordination.",
+      description: "Automate order routing, delivery workflows and customer updates, significantly reducing manual coordination.",
     },
     {
       icon: Target,
@@ -51,7 +51,7 @@ export default function WhyChoose() {
         </p>
       </div>
 
-      <div className="svc-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }} data-reveal>
+      <div className="svc-grid" data-reveal>
         {reasons.map((reason, index) => {
           const IconComponent = reason.icon;
           return (

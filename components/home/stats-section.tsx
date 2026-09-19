@@ -23,7 +23,7 @@ export default function StatsSection() {
         <div className="eyebrow">Cleclo By The Numbers</div>
         <h2>Scale Your Business with Confidence</h2>
       </div>
-      <div className="kpi-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+      <div className="kpi-grid">
         {stats.map((stat, index) => (
           <div className="kpi-card" data-reveal key={index}>
             <span className="hole"></span>
