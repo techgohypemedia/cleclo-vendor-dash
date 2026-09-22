@@ -418,25 +418,56 @@ header.scrolled { box-shadow: 0 8px 28px -20px rgba(14,51,49,0.35); }
 }
 
 @media (max-width: 768px) {
+  .timeline-alt-wrap {
+    padding: 0 6px;
+    margin-top: 36px;
+  }
   .timeline-alt-line {
-    left: 23px;
-    transform: none;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+  .timeline-alt-items {
+    gap: 20px;
   }
   .timeline-alt-row {
-    grid-template-columns: 46px 1fr !important;
-    gap: 16px;
+    display: grid !important;
+    grid-template-columns: 1fr 38px 1fr !important;
+    align-items: center !important;
+    gap: 4px !important;
+    width: 100% !important;
   }
   .timeline-alt-spacer {
-    display: none !important;
-  }
-  .timeline-alt-row.right-side .timeline-alt-card-box {
-    order: 2;
-  }
-  .timeline-alt-row.right-side .timeline-alt-node {
-    order: 1;
+    display: block !important;
   }
   .timeline-alt-node {
-    justify-self: start;
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 13px !important;
+    justify-self: center !important;
+    margin: 0 !important;
+    border-width: 2px !important;
+    box-shadow: 0 0 0 1.5px var(--pine-2) !important;
+  }
+  .timeline-alt-card-box {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+  .timeline-alt-card {
+    padding: 12px 10px !important;
+    border-radius: var(--radius-s) !important;
+  }
+  .timeline-alt-card .step-no {
+    font-size: 9.5px !important;
+    letter-spacing: 0.05em !important;
+  }
+  .timeline-alt-card h4 {
+    font-size: 13.5px !important;
+    margin: 3px 0 3px !important;
+    line-height: 1.25 !important;
+  }
+  .timeline-alt-card p {
+    font-size: 11.5px !important;
+    line-height: 1.35 !important;
   }
 }
 

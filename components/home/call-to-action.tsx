@@ -3,10 +3,10 @@ import { Rocket, Phone, Check } from "lucide-react";
 
 export default function CallToAction() {
   const highlights = [
-    "No Credit Card Required",
-    "Free Forever Plan",
-    "Setup in Minutes",
-    "Cancel Anytime",
+    "Access New Customer Demand",
+    "Increase Your Business Visibility",
+    "Reduce Customer Acquisition Cost",
+    "Manage Orders Through One Platform",
   ];
 
   return (

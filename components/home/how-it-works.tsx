@@ -10,7 +10,7 @@ export default function HowItWorks() {
       stepNo: "02",
       tag: "STEP 02",
       title: "Configure Outlets",
-      desc: "Set up your outlets, choose the services you offer, and configure service areas.",
+      desc: "Set up your outlets, choose the services you offer and configure service areas.",
     },
     {
       stepNo: "03",

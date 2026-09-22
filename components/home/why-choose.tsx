@@ -17,7 +17,7 @@ export default function WhyChoose() {
     {
       icon: BarChart3,
       title: "Smart Automation",
-      description: "Automate order routing, delivery workflows and customer updates, significantly reducing manual coordination.",
+      description: "Automated order routing, delivery workflows and customer updates, significantly reducing manual coordination.",
     },
     {
       icon: Target,
@@ -44,7 +44,7 @@ export default function WhyChoose() {
   return (
     <section className="section wrap" id="why-choose">
       <div className="section-head" data-reveal>
-        <div className="eyebrow">Rapidly Growing Vendor Network</div>
+        <div className="eyebrow">JOIN RAPIDLY GROWING VENDOR NETWORK</div>
         <h2>Why Vendors Choose Cleclo</h2>
         <p className="lede">
           Join thousands of laundry vendors already growing their business with Cleclo.
@@ -67,7 +67,7 @@ export default function WhyChoose() {
       </div>
       
       <div className="eco-closing" data-reveal style={{ marginTop: '56px' }}>
-        <p>Join a <em>rapidly growing vendor network</em> of laundry and dry-cleaning partners who trust Cleclo.</p>
+        <p>Join rapidly growing laundry and drycleaning vendor network who trust Cleclo.</p>
         <p style={{ fontSize: '14.5px', color: 'var(--ink-soft)' }}>Designed for long-term partnerships, not short-term transactions.</p>
       </div>
     </section>
