@@ -14,12 +14,12 @@ export default function VendorBenefits() {
     {
       icon: Package,
       title: "Multi-Outlet Management",
-      description: "Centrally manage multiple outlets, vendors and processing units with real-time visibility across orders, capacity and performance.",
+      description: "Centrally manage multiple outlets and processing units with real-time visibility across orders, capacity and performance.",
     },
     {
       icon: MapPin,
       title: "Smart Order Assignment",
-      description: "Automatically route orders based on location, capacity, turnaround time and predefined business rules.",
+      description: "Automatically allocate orders based on location, capacity, turnaround time and predefined business rules.",
     },
     {
       icon: TrendingUp,
@@ -44,7 +44,7 @@ export default function VendorBenefits() {
     {
       icon: IndianRupee,
       title: "Transparent Pricing",
-      description: "Configurable pricing rules with automatic GST calculation, invoicing and tax-ready reporting.",
+      description: "Pre-defined & configured pricing rules with automatic GST calculation, invoicing and tax-ready reporting.",
     },
     {
       icon: Clock,
