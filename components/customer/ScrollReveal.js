@@ -20,7 +20,7 @@ export default function ScrollReveal() {
             }
           });
         },
-        { threshold: 0.12 }
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
       );
       targets.forEach((el) => io.observe(el));
       return () => io.disconnect();

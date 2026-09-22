@@ -19,7 +19,7 @@ export default function VendorBenefits() {
     {
       icon: MapPin,
       title: "Smart Order Assignment",
-      description: "Automatically allocate orders based on location, capacity, turnaround time and predefined business rules.",
+      description: "Automatically allocated orders based on location, capacity, turnaround time and predefined business rules.",
     },
     {
       icon: TrendingUp,

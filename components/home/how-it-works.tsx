@@ -1,22 +1,26 @@
 export default function HowItWorks() {
   const steps = [
     {
-      stepNo: "STEP 01",
+      stepNo: "01",
+      tag: "STEP 01",
       title: "Register as a Vendor",
       desc: "Sign up with your business details and submit basic verification information.",
     },
     {
-      stepNo: "STEP 02",
+      stepNo: "02",
+      tag: "STEP 02",
       title: "Configure Outlets",
       desc: "Set up your outlets, choose the services you offer, and configure service areas.",
     },
     {
-      stepNo: "STEP 03",
+      stepNo: "03",
+      tag: "STEP 03",
       title: "Start Receiving Orders",
       desc: "Once approved, your outlets go live and begin receiving orders automatically.",
     },
     {
-      stepNo: "STEP 04",
+      stepNo: "04",
+      tag: "STEP 04",
       title: "Seamless Payouts",
       desc: "Track your earnings in real time and receive regular transparent settlements.",
     },
@@ -31,19 +35,50 @@ export default function HowItWorks() {
           A streamlined process to onboard, operate and scale on Cleclo.
         </p>
       </div>
-      <div className="line-wrap" data-reveal>
-        <div className="line-track">
-          {steps.map((step) => (
-            <div className="line-step" key={step.stepNo}>
-              <div className="pin"></div>
-              <div className="peg"></div>
-              <div className="line-card">
-                <div className="step-no">{step.stepNo}</div>
-                <h4>{step.title}</h4>
-                <p>{step.desc}</p>
+
+      <div className="timeline-alt-wrap">
+        <div className="timeline-alt-line"></div>
+        <div className="timeline-alt-items">
+          {steps.map((step, idx) => {
+            const isLeft = idx % 2 === 0;
+            return (
+              <div
+                className={`timeline-alt-row ${isLeft ? "left-side" : "right-side"}`}
+                data-reveal
+                key={step.stepNo}
+              >
+                {isLeft ? (
+                  <>
+                    <div className="timeline-alt-card-box">
+                      <div className="timeline-alt-card">
+                        <div className="step-no">{step.tag}</div>
+                        <h4>{step.title}</h4>
+                        <p>{step.desc}</p>
+                      </div>
+                    </div>
+                    <div className="timeline-alt-node">
+                      <span>{step.stepNo}</span>
+                    </div>
+                    <div className="timeline-alt-spacer"></div>
+                  </>
+                ) : (
+                  <>
+                    <div className="timeline-alt-spacer"></div>
+                    <div className="timeline-alt-node">
+                      <span>{step.stepNo}</span>
+                    </div>
+                    <div className="timeline-alt-card-box">
+                      <div className="timeline-alt-card">
+                        <div className="step-no">{step.tag}</div>
+                        <h4>{step.title}</h4>
+                        <p>{step.desc}</p>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
