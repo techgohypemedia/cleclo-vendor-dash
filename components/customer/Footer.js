@@ -16,7 +16,7 @@ export default function Footer() {
               pickup to delivery.
             </p>
             <div className="contact">
-              <div>support@cleclo.in</div>
+              <div>customersupport@cleclo.in</div>
               <div>New Delhi, India</div>
             </div>
           </div>
