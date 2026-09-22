@@ -290,7 +290,7 @@ header.scrolled { box-shadow: 0 8px 28px -20px rgba(14,51,49,0.35); }
 .ticket.yes ul li { color: var(--ink); }
 
 /* KPI tag cards */
-.kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .kpi-card {
   background: var(--kraft); border: 1px solid var(--kraft-line); border-radius: var(--radius-m);
   padding: 26px 22px 22px; position: relative;

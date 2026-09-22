@@ -44,7 +44,7 @@ export default function WhyChoose() {
   return (
     <section className="section wrap" id="why-choose">
       <div className="section-head" data-reveal>
-        <div className="eyebrow">Join 5000+ Vendors</div>
+        <div className="eyebrow">Rapidly Growing Vendor Network</div>
         <h2>Why Vendors Choose Cleclo</h2>
         <p className="lede">
           Join thousands of laundry vendors already growing their business with Cleclo.
@@ -67,7 +67,7 @@ export default function WhyChoose() {
       </div>
       
       <div className="eco-closing" data-reveal style={{ marginTop: '56px' }}>
-        <p>Join <em>5,000+</em> laundry and dry-cleaning vendors who trust Cleclo.</p>
+        <p>Join a <em>rapidly growing vendor network</em> of laundry and dry-cleaning partners who trust Cleclo.</p>
         <p style={{ fontSize: '14.5px', color: 'var(--ink-soft)' }}>Designed for long-term partnerships, not short-term transactions.</p>
       </div>
     </section>

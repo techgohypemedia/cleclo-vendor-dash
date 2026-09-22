@@ -30,7 +30,6 @@ export default function Header() {
     { label: "Home", href: "/" },
     { label: "Features", href: "#features" },
     { label: "How It Works", href: "#how" },
-    { label: "Pricing", href: "#pricing" },
   ];
 
   return (

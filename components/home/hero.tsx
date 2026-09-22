@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Play, ArrowRight } from "lucide-react";
+import { Play } from "lucide-react";
 
 export default function Hero() {
   return (
@@ -20,12 +20,8 @@ export default function Hero() {
               <Play className="w-5 h-5 mr-2" />
               See How Cleclo Works
             </Link>
-            <Link href="/signup" className="btn btn-ghost">
-              Start Free Trial
-              <ArrowRight className="w-5 h-5 ml-2" />
-            </Link>
           </div>
-          <p className="hero-note">Powering leading laundry partners in Delhi NCR & Tier-1 cities.</p>
+          <p className="hero-note">Powering Leading Laundry Partners Across India.</p>
 
           <div className="trust-row">
             <div className="item">
@@ -33,7 +29,7 @@ export default function Hero() {
                 <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.6" />
                 <path d="M12 7v5l3 2" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
               </svg>
-              5000+ Vendors
+              Rapidly growing Vendor Network
             </div>
             <div className="item">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
