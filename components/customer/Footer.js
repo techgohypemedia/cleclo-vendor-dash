@@ -1,5 +1,12 @@
 import Image from "next/image";
-import { footerColumns } from "@/lib/content";
+import { footerColumns, socialLinks } from "@/lib/content";
+import { Instagram, Twitter, Linkedin } from "lucide-react";
+
+const iconMap = {
+  Instagram: Instagram,
+  Twitter: Twitter,
+  LinkedIn: Linkedin,
+};
 
 export default function Footer() {
   return (
@@ -18,6 +25,24 @@ export default function Footer() {
             <div className="contact">
               <div>customersupport@cleclo.in</div>
               <div>New Delhi, India</div>
+            </div>
+            <div className="foot-socials flex items-center gap-3 mt-5" aria-label="Social media links">
+              {socialLinks.map((item) => {
+                const Icon = iconMap[item.name];
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="foot-social-link w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
+                    aria-label={item.label || item.name}
+                    title={item.name}
+                  >
+                    {Icon ? <Icon size={18} strokeWidth={2} /> : null}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -46,3 +71,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+

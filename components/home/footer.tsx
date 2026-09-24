@@ -1,5 +1,27 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Instagram, Twitter, Linkedin } from "lucide-react";
+
+const socialLinks = [
+  {
+    name: "Instagram",
+    href: "https://www.instagram.com/cleclo.in",
+    label: "Follow us on Instagram",
+    icon: Instagram,
+  },
+  {
+    name: "Twitter",
+    href: "https://twitter.com/cleclo_in",
+    label: "Follow us on Twitter / X",
+    icon: Twitter,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/company/cleclo",
+    label: "Connect with us on LinkedIn",
+    icon: Linkedin,
+  },
+];
 
 export default function Footer() {
   const footerLinks = {
@@ -39,6 +61,24 @@ export default function Footer() {
               <div>Vendorsupport@cleclo.in</div>
               <div>New Delhi, India</div>
             </div>
+            <div className="foot-socials flex items-center gap-3 mt-5" aria-label="Social media links">
+              {socialLinks.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="foot-social-link w-9 h-9 rounded-full flex items-center justify-center transition-all duration-200"
+                    aria-label={item.label}
+                    title={item.name}
+                  >
+                    <Icon size={18} strokeWidth={2} />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           {Object.entries(footerLinks).map(([title, links]) => (
@@ -60,3 +100,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+
