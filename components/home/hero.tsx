@@ -47,9 +47,9 @@ export default function Hero() {
             </defs>
             <circle cx="160" cy="160" r="150" fill="none" stroke="var(--kraft-line)" strokeWidth="1" />
             <circle cx="160" cy="160" r="128" fill="none" stroke="var(--brass)" strokeWidth="1.4" strokeDasharray="2 6" />
-            <text style={{ fontFamily: "var(--font-mono)" }} fontSize="12.5" letterSpacing="3" fill="var(--pine-2)">
+            <text style={{ fontFamily: "var(--font-mono)", fontWeight: 600 }} fontSize="11" letterSpacing="1" fill="var(--pine)">
               <textPath href="#sealCircle" startOffset="0%">
-                INDEPENDENT OWNERS • MULTI OUTLET OPERATORS • BACKEND VENDORS •
+                INDEPENDENT LAUNDRY OWNERS • MULTI OUTLET OPERATORS • BACKEND VENDOR PARTNERS • FRANCHISE OWNERS •
               </textPath>
             </text>
           </svg>
