@@ -815,11 +815,11 @@ export function VendorSignupForm() {
                       className="w-5 h-5 mt-1 rounded-md border-2 border-slate-300 text-emerald-500 focus:ring-2 focus:ring-emerald-500/20 cursor-pointer shrink-0"
                     />
                     <span className="text-sm text-slate-700 font-medium">
-                      I accept the{" "}
+                      I agree to the{" "}
                       <span className="font-bold text-slate-900">
-                        Terms and Conditions
+                        Terms &amp; Conditions
                       </span>{" "}
-                      for vendor onboarding
+                      governing my onboarding and participation as a Cleclo Vendor.
                     </span>
                   </label>
                   <label className="flex items-start gap-4 p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-emerald-300 hover:bg-emerald-50/30 cursor-pointer transition-all duration-200 group">
@@ -828,24 +828,28 @@ export function VendorSignupForm() {
                       className="w-5 h-5 mt-1 rounded-md border-2 border-slate-300 text-emerald-500 focus:ring-2 focus:ring-emerald-500/20 cursor-pointer shrink-0"
                     />
                     <span className="text-sm text-slate-700 font-medium">
-                      I agree with the{" "}
+                      I agree to the{" "}
                       <span className="font-bold text-slate-900">
-                        Service Level Agreement
+                        Service Level Agreement (SLA)
                       </span>{" "}
-                      and commission structure
-                    </span>
-                  </label>
-                  <label className="flex items-start gap-4 p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-emerald-300 hover:bg-emerald-50/30 cursor-pointer transition-all duration-200 group">
-                    <input
-                      type="checkbox"
-                      className="w-5 h-5 mt-1 rounded-md border-2 border-slate-300 text-emerald-500 focus:ring-2 focus:ring-emerald-500/20 cursor-pointer shrink-0"
-                    />
-                    <span className="text-sm text-slate-700 font-medium">
-                      I confirm all information is{" "}
+                      and the applicable{" "}
                       <span className="font-bold text-slate-900">
-                        correct and accurate
+                        Vendor Payout Structure
                       </span>
-                      , and I authorize final submission
+                      .
+                    </span>
+                  </label>
+                  <label className="flex items-start gap-4 p-4 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-emerald-300 hover:bg-emerald-50/30 cursor-pointer transition-all duration-200 group">
+                    <input
+                      type="checkbox"
+                      className="w-5 h-5 mt-1 rounded-md border-2 border-slate-300 text-emerald-500 focus:ring-2 focus:ring-emerald-500/20 cursor-pointer shrink-0"
+                    />
+                    <span className="text-sm text-slate-700 font-medium">
+                      I confirm that all information and documents provided by me are{" "}
+                      <span className="font-bold text-slate-900">
+                        true, complete and accurate
+                      </span>{" "}
+                      and I authorize the submission of this application.
                     </span>
                   </label>
                 </div>
