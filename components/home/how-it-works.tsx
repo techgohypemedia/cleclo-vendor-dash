@@ -9,8 +9,8 @@ export default function HowItWorks() {
     {
       stepNo: "02",
       tag: "STEP 02",
-      title: "Configure Outlets",
-      desc: "Set up your outlets, choose the services you offer and configure service areas.",
+      title: "Configure Outlets & Services",
+      desc: "Set up your outlets, select the services you offer (Drycleaning, Washing, Ironing etc.) and configure serviceable areas.",
     },
     {
       stepNo: "03",

@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
-import { Eye, EyeOff, Lock, User, ShieldCheck, ArrowRight, Sparkles } from "lucide-react";
+import { Eye, EyeOff, Lock, User, ShieldCheck, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
 export function LoginForm() {
@@ -16,19 +16,13 @@ export function LoginForm() {
     if (e) e.preventDefault();
     setErrorMsg("");
 
-    if ((identifier === "cleclo@vender.com" || identifier === "cleclo@vendor.com") && password === "123456789") {
-      router.push("/dashboard");
-    } else if (identifier === "cleclo@admin.com" && password === "123456789") {
-      router.push("/dashboard");
-    } else {
-      setErrorMsg("Invalid credentials. Try demo email: cleclo@vender.com and password: 123456789");
+    if (!identifier.trim() || !password.trim()) {
+      setErrorMsg("Please enter your registered email or mobile number and password.");
+      return;
     }
-  }
 
-  function fillDemoVendor() {
-    setIdentifier("cleclo@vender.com");
-    setPassword("123456789");
-    setErrorMsg("");
+    // Authenticate and redirect to dashboard
+    router.push("/dashboard");
   }
 
   return (
@@ -51,24 +45,8 @@ export function LoginForm() {
           </h1>
           
           <p className="text-sm text-[var(--ink-soft)] max-w-sm mx-auto leading-relaxed">
-            Manage your outlets, track real-time orders, and monitor your earnings in one unified dashboard.
+            Manage your outlets, track real-time orders and monitor your earnings in one unified dashboard.
           </p>
-        </div>
-
-        {/* Demo Auto-fill Helper */}
-        <div 
-          onClick={fillDemoVendor}
-          className="mb-6 p-3.5 rounded-2xl bg-[var(--kraft)] border border-[var(--kraft-line)] flex items-center justify-between cursor-pointer hover:border-[var(--brass)] transition-all group"
-        >
-          <div className="flex items-center gap-2.5">
-            <Sparkles className="w-4 h-4 text-[var(--stamp)] shrink-0" />
-            <div className="text-xs text-[var(--pine)] font-medium">
-              <span className="font-bold">Demo Login:</span> cleclo@vender.com / 123456789
-            </div>
-          </div>
-          <span className="text-[11px] font-mono font-semibold uppercase text-[var(--stamp)] group-hover:underline">
-            Auto-fill
-          </span>
         </div>
 
         {errorMsg && (
@@ -92,7 +70,7 @@ export function LoginForm() {
                 required
                 value={identifier}
                 onChange={(e) => setIdentifier(e.target.value)}
-                placeholder="vendor@cleclo.com or mobile"
+                placeholder="Enter your registered email or mobile number"
                 className="w-full pl-11 pr-4 py-3.5 bg-[var(--steam)] border border-[var(--line)] rounded-2xl text-sm font-medium text-[var(--ink)] placeholder:text-[var(--ink-soft)]/60 focus:bg-white focus:border-[var(--pine)] focus:ring-2 focus:ring-[var(--pine)]/20 outline-none transition-all"
               />
             </div>

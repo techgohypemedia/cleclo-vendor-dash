@@ -6,6 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   User,
   Store,
   Bell,
@@ -229,23 +236,42 @@ export function SettingsPage() {
                   </div>
                   <div className="space-y-2">
                     <Label htmlFor="serviceRadius">
-                      Service Radius (miles)
+                      Service Radius (KM)
                     </Label>
-                    <Input
-                      id="serviceRadius"
-                      type="number"
-                      defaultValue="5"
-                      className="h-11"
-                    />
+                    <Select defaultValue="5">
+                      <SelectTrigger id="serviceRadius" className="h-11 w-full bg-white">
+                        <SelectValue placeholder="Select radius" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="3">3 KM</SelectItem>
+                        <SelectItem value="5">5 KM</SelectItem>
+                        <SelectItem value="8">8 KM</SelectItem>
+                        <SelectItem value="10">10 KM</SelectItem>
+                        <SelectItem value="15">15 KM</SelectItem>
+                        <SelectItem value="20">20 KM</SelectItem>
+                        <SelectItem value="25">25 KM</SelectItem>
+                        <SelectItem value="30">30 KM</SelectItem>
+                        <SelectItem value="50">50 KM</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="capacity">Daily Capacity (orders)</Label>
-                    <Input
-                      id="capacity"
-                      type="number"
-                      defaultValue="20"
-                      className="h-11"
-                    />
+                    <Label htmlFor="capacity">Daily Capacity (Units)</Label>
+                    <Select defaultValue="20">
+                      <SelectTrigger id="capacity" className="h-11 w-full bg-white">
+                        <SelectValue placeholder="Select capacity" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="10">10 Units</SelectItem>
+                        <SelectItem value="20">20 Units</SelectItem>
+                        <SelectItem value="30">30 Units</SelectItem>
+                        <SelectItem value="50">50 Units</SelectItem>
+                        <SelectItem value="75">75 Units</SelectItem>
+                        <SelectItem value="100">100 Units</SelectItem>
+                        <SelectItem value="150">150 Units</SelectItem>
+                        <SelectItem value="200">200+ Units</SelectItem>
+                      </SelectContent>
+                    </Select>
                   </div>
                 </div>
 
@@ -467,26 +493,26 @@ export function SettingsPage() {
                 ].map((day) => (
                   <div
                     key={day}
-                    className="p-4 flex items-center justify-between"
+                    className="p-4 flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap"
                   >
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-4 min-w-[130px]">
                       <Switch defaultChecked={day !== "Sunday"} />
                       <span className="font-medium text-slate-900 w-24">
                         {day}
                       </span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                       <Input
                         type="time"
                         defaultValue="09:00"
-                        className="h-9 w-28"
+                        className="h-9 w-36 px-2.5 text-xs sm:text-sm font-medium"
                         disabled={day === "Sunday"}
                       />
-                      <span className="text-slate-400">to</span>
+                      <span className="text-slate-400 text-xs sm:text-sm">to</span>
                       <Input
                         type="time"
                         defaultValue="18:00"
-                        className="h-9 w-28"
+                        className="h-9 w-36 px-2.5 text-xs sm:text-sm font-medium"
                         disabled={day === "Sunday"}
                       />
                     </div>
