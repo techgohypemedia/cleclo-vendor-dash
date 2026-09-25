@@ -20,7 +20,7 @@ import { ReportProblemModal } from "@/components/dashboard/report-problem-modal"
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface NewOrderModalProps {
   open: boolean;
@@ -107,6 +107,40 @@ export function NewOrderModal({ open, onOpenChange }: NewOrderModalProps) {
   const [selectedImages, setSelectedImages] = useState<string[]>([]);
   const [showReportProblem, setShowReportProblem] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
+  const [isDeclined, setIsDeclined] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(180); // 3 minutes for Express allocation
+  const [isExpired, setIsExpired] = useState(false);
+
+  useEffect(() => {
+    if (!open) {
+      setTimeLeft(180);
+      setIsExpired(false);
+      setIsDeclined(false);
+      setIsAccepted(false);
+      return;
+    }
+
+    if (isAccepted || isDeclined || isExpired) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          setIsExpired(true);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [open, isAccepted, isDeclined, isExpired]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+  };
 
   const handleToggleDetails = () => {
     setShowDetails(!showDetails);
@@ -122,13 +156,15 @@ export function NewOrderModal({ open, onOpenChange }: NewOrderModalProps) {
 
   const handleAcceptOrder = () => {
     setIsAccepted(true);
-    // Wait for animation/user to see the success message
     setTimeout(() => {
       onOpenChange(false);
       router.push("/dashboard/schedule");
-      // Reset state functionality if modal is reused, though typically it unmounts
       setTimeout(() => setIsAccepted(false), 300);
-    }, 5000);
+    }, 2500);
+  };
+
+  const handleDeclineOrder = () => {
+    setIsDeclined(true);
   };
 
   return (
@@ -145,9 +181,45 @@ export function NewOrderModal({ open, onOpenChange }: NewOrderModalProps) {
             <h3 className="text-2xl font-bold text-slate-900 animate-in slide-in-from-bottom-2 duration-300 delay-100">
               Order Accepted!
             </h3>
-            <p className="text-slate-500 font-medium max-w-[250px] animate-in slide-in-from-bottom-2 duration-300 delay-200">
-              Pickup scheduled for today, 2-4 PM.
+            <p className="text-slate-500 font-medium max-w-[250px] animate-in slide-in-from-bottom-2 duration-300 delay-200 text-sm">
+              Pickup scheduled for today, 2-4 PM. Order moved to processing queue.
             </p>
+          </div>
+        ) : isExpired ? (
+          <div className="flex flex-col items-center justify-center py-14 px-6 text-center space-y-4 bg-white h-full min-h-[400px]">
+            <div className="h-20 w-20 bg-amber-100 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300">
+              <Clock className="h-10 w-10 text-amber-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900">
+              Order Auto-Reallocated
+            </h3>
+            <p className="text-slate-500 font-medium text-sm max-w-[300px]">
+              The 3-minute acceptance window for this Express order has expired. It has been automatically reallocated to another partner to maintain customer SLA.
+            </p>
+            <Button
+              className="mt-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl px-6 h-11"
+              onClick={() => onOpenChange(false)}
+            >
+              Back to Dashboard
+            </Button>
+          </div>
+        ) : isDeclined ? (
+          <div className="flex flex-col items-center justify-center py-14 px-6 text-center space-y-4 bg-white h-full min-h-[400px]">
+            <div className="h-20 w-20 bg-red-100 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300">
+              <AlertTriangle className="h-10 w-10 text-red-600" />
+            </div>
+            <h3 className="text-2xl font-bold text-slate-900">
+              Order Declined
+            </h3>
+            <p className="text-slate-500 font-medium text-sm max-w-[300px]">
+              You have declined this order. It has been immediately returned to the allocation engine for partner reassignment.
+            </p>
+            <Button
+              className="mt-4 bg-slate-900 hover:bg-slate-800 text-white font-bold rounded-xl px-6 h-11"
+              onClick={() => onOpenChange(false)}
+            >
+              Close
+            </Button>
           </div>
         ) : (
           <>
@@ -205,6 +277,34 @@ export function NewOrderModal({ open, onOpenChange }: NewOrderModalProps) {
                   <Zap className="h-3 w-3 fill-orange-600" />
                   EXPRESS
                 </Badge>
+              </div>
+
+              {/* Express Countdown Banner */}
+              <div className="flex items-center justify-between gap-3 bg-amber-50/80 border border-amber-200/80 rounded-2xl p-3.5 mt-3">
+                <div className="flex items-center gap-2.5">
+                  <span className="relative flex h-3 w-3 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-amber-400 opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-amber-500"></span>
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-xs font-bold text-amber-950">
+                      Express Acceptance Window
+                    </span>
+                    <span className="text-[11px] text-amber-700/90 font-medium">
+                      Auto-reallocates if not accepted in time
+                    </span>
+                  </div>
+                </div>
+                <div
+                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl font-mono font-bold text-sm shadow-xs shrink-0 border ${
+                    timeLeft < 60
+                      ? "bg-red-50 text-red-700 border-red-200 animate-pulse"
+                      : "bg-white text-amber-900 border-amber-300/80"
+                  }`}
+                >
+                  <Clock className="w-3.5 h-3.5" />
+                  <span>{formatTime(timeLeft)}</span>
+                </div>
               </div>
             </div>
 
@@ -441,7 +541,7 @@ export function NewOrderModal({ open, onOpenChange }: NewOrderModalProps) {
                     Your Earning
                   </span>
                   <span className="text-xl font-black text-[#3E8940] tracking-tight">
-                    ₹24.50
+                    ₹245.00
                   </span>
                 </div>
               </div>
@@ -463,8 +563,8 @@ export function NewOrderModal({ open, onOpenChange }: NewOrderModalProps) {
               <div className="grid grid-cols-2 gap-4">
                 <Button
                   variant="outline"
-                  className="h-12 border-slate-200 text-slate-700 font-bold text-base hover:bg-slate-50 hover:text-slate-900 rounded-xl"
-                  onClick={() => onOpenChange(false)}
+                  className="h-12 border-slate-200 text-slate-700 font-bold text-base hover:bg-red-50 hover:text-red-600 hover:border-red-200 rounded-xl transition-all"
+                  onClick={handleDeclineOrder}
                 >
                   Decline Order
                 </Button>

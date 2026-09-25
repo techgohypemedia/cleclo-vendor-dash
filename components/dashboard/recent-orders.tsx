@@ -39,6 +39,13 @@ interface RecentOrdersProps {
   filterStatus: string | null;
 }
 
+const STATUS_TITLE_MAP: Record<string, string> = {
+  Assigned: "Newly Assigned Orders",
+  "Pending Pickup": "Pending Pickups",
+  "Under Processing": "Under Processing",
+  Ready: "Ready for Delivery",
+};
+
 export function RecentOrders({
   orders,
   onOrderClick,
@@ -48,11 +55,15 @@ export function RecentOrders({
     ? orders.filter((order) => order.status === filterStatus)
     : orders;
 
+  const currentHeaderTitle = filterStatus
+    ? STATUS_TITLE_MAP[filterStatus] || `${filterStatus} Orders`
+    : "Recent Orders";
+
   return (
     <div className="bg-white/90 backdrop-blur-xl rounded-3xl border border-[var(--kraft-line)] shadow-xl shadow-[var(--pine)]/5 p-6 w-full">
       <div className="flex items-center justify-between mb-6">
         <h2 className="text-xl font-extrabold text-[var(--pine)]">
-          {filterStatus ? `${filterStatus} Orders` : "Recent Orders"}
+          {currentHeaderTitle}
         </h2>
         <Button
           variant="ghost"
@@ -162,7 +173,7 @@ export function RecentOrders({
           })
         ) : (
           <p className="text-center text-slate-500 py-6 text-sm">
-            No orders found with status &quot;{filterStatus}&quot;
+            No orders found under &quot;{filterStatus ? STATUS_TITLE_MAP[filterStatus] || filterStatus : "Recent Orders"}&quot;
           </p>
         )}
       </div>
@@ -328,7 +339,7 @@ export function RecentOrders({
                   colSpan={7}
                   className="h-24 text-center text-slate-500"
                 >
-                  No orders found with status &quot;{filterStatus}&quot;
+                  No orders found under &quot;{filterStatus ? STATUS_TITLE_MAP[filterStatus] || filterStatus : "Recent Orders"}&quot;
                 </TableCell>
               </TableRow>
             )}

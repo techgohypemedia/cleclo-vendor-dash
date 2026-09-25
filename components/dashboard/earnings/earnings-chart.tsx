@@ -12,13 +12,13 @@ import {
 } from "recharts";
 
 const data = [
-  { day: "Mon", amount: 120 },
-  { day: "Tue", amount: 180 },
-  { day: "Wed", amount: 90 },
-  { day: "Thu", amount: 200 },
-  { day: "Fri", amount: 250 },
-  { day: "Sat", amount: 135, active: true },
-  { day: "Sun", amount: 25 },
+  { day: "Mon", amount: 3800 },
+  { day: "Tue", amount: 5200 },
+  { day: "Wed", amount: 2900 },
+  { day: "Thu", amount: 5800 },
+  { day: "Fri", amount: 7400 },
+  { day: "Sat", amount: 4600, active: true },
+  { day: "Sun", amount: 1800 },
 ];
 
 export function EarningsChart() {

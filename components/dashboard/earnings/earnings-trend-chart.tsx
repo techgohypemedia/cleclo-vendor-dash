@@ -11,13 +11,13 @@ import {
 } from "recharts";
 
 const data = [
-  { day: "Mon", amount: 120, trend: 100 },
-  { day: "Tue", amount: 180, trend: 160 },
-  { day: "Wed", amount: 90, trend: 110 },
-  { day: "Thu", amount: 200, trend: 190 },
-  { day: "Fri", amount: 250, trend: 230 },
-  { day: "Sat", amount: 135, active: true, trend: 150 },
-  { day: "Sun", amount: 25, trend: 40 },
+  { day: "Mon", amount: 3800, trend: 3600 },
+  { day: "Tue", amount: 5200, trend: 4800 },
+  { day: "Wed", amount: 2900, trend: 3200 },
+  { day: "Thu", amount: 5800, trend: 5400 },
+  { day: "Fri", amount: 7400, trend: 6900 },
+  { day: "Sat", amount: 4600, active: true, trend: 4900 },
+  { day: "Sun", amount: 1800, trend: 2100 },
 ];
 
 export function EarningsTrendChart() {
