@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function HowItWorks() {
   const steps = [
     {
@@ -42,41 +44,53 @@ export default function HowItWorks() {
           {steps.map((step, idx) => {
             const isLeft = idx % 2 === 0;
             return (
-              <div
-                className={`timeline-alt-row ${isLeft ? "left-side" : "right-side"}`}
-                data-reveal
-                key={step.stepNo}
-              >
-                {isLeft ? (
-                  <>
-                    <div className="timeline-alt-card-box">
-                      <div className="timeline-alt-card">
-                        <div className="step-no">{step.tag}</div>
-                        <h4>{step.title}</h4>
-                        <p>{step.desc}</p>
+              <React.Fragment key={step.stepNo}>
+                <div
+                  className={`timeline-alt-row ${isLeft ? "left-side" : "right-side"}`}
+                  data-reveal
+                >
+                  {isLeft ? (
+                    <>
+                      <div className="timeline-alt-card-box">
+                        <div className="timeline-alt-card">
+                          <div className="step-no">{step.tag}</div>
+                          <h4>{step.title}</h4>
+                          <p>{step.desc}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="timeline-alt-node">
-                      <span>{step.stepNo}</span>
-                    </div>
-                    <div className="timeline-alt-spacer"></div>
-                  </>
-                ) : (
-                  <>
-                    <div className="timeline-alt-spacer"></div>
-                    <div className="timeline-alt-node">
-                      <span>{step.stepNo}</span>
-                    </div>
-                    <div className="timeline-alt-card-box">
-                      <div className="timeline-alt-card">
-                        <div className="step-no">{step.tag}</div>
-                        <h4>{step.title}</h4>
-                        <p>{step.desc}</p>
+                      <div className="timeline-alt-node">
+                        <span>{step.stepNo}</span>
                       </div>
+                      <div className="timeline-alt-spacer"></div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="timeline-alt-spacer"></div>
+                      <div className="timeline-alt-node">
+                        <span>{step.stepNo}</span>
+                      </div>
+                      <div className="timeline-alt-card-box">
+                        <div className="timeline-alt-card">
+                          <div className="step-no">{step.tag}</div>
+                          <h4>{step.title}</h4>
+                          <p>{step.desc}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
+                {idx === 1 && (
+                  <div className="timeline-connector-callout" data-reveal>
+                    <div className="connector-pill">
+                      <span className="connector-dot"></span>
+                      <span className="connector-text">
+                        Cleclo handles order routing, notifications and tracking automatically.
+                      </span>
                     </div>
-                  </>
+                  </div>
                 )}
-              </div>
+              </React.Fragment>
             );
           })}
         </div>
