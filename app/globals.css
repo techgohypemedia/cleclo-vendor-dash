@@ -4,31 +4,32 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  /* Customer marketing site tokens */
-  --steam: #F5FAF4;
-  --steam-dim: #EAF4E7;
+  /* Customer marketing site tokens - Clean White Theme */
+  --steam: #FFFFFF;
+  --steam-dim: #F9FAF9;
   --pine: #1E4A20;
   --pine-2: #2C5C2E;
   --brass: #E0A63D;
   --brass-dim: #F2DBA3;
   --stamp: #D3811F;
-  --kraft: #E9F5E6;
+  --kraft: #F7FAF6;
   --kraft-line: #CFE8C7;
   --brand-light: #77C36B;
   --brand-dark: #3E7A3B;
   --ink: #17231A;
   --ink-soft: #51604F;
-  --line: #DCEBD8;
+  --line: #E5ECE3;
   --white: #FFFFFF;
   --radius-s: 6px;
   --radius-m: 14px;
   --radius-l: 28px;
   --maxw: 1180px;
-  --shadow: 0 20px 44px -24px rgba(14,51,49,0.35);
+  --shadow: 0 20px 44px -24px rgba(14,51,49,0.18);
 
-  /* Updated color scheme for laundry vendor platform */
+  /* Updated color scheme for laundry vendor platform - Pure White & Pine Labs Poppins */
   --font-heading: var(--font-poppins);
-  --background: #f5f1f0;
+  --font-body: var(--font-poppins);
+  --background: #FFFFFF;
   --foreground: #5f5f5f;
   --card: #ffffff;
   --card-foreground: #5f5f5f;
@@ -73,8 +74,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-body), system-ui, sans-serif;
-  --font-heading: var(--font-display), sans-serif;
+  --font-sans: var(--font-poppins), "Poppins", system-ui, sans-serif;
+  --font-poppins: var(--font-poppins), "Poppins", system-ui, sans-serif;
+  --font-heading: var(--font-poppins), "Poppins", system-ui, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -107,21 +109,24 @@
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 84px;
+    background-color: #FFFFFF;
   }
   body {
     margin: 0;
-    background: var(--steam);
+    background-color: #FFFFFF !important;
+    background: #FFFFFF !important;
     color: var(--ink);
-    font-family: var(--font-body), system-ui, sans-serif;
+    font-family: var(--font-poppins), "Poppins", system-ui, -apple-system, sans-serif;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     line-height: 1.5;
   }
-  h1, h2, h3, h4 {
-    font-family: var(--font-display), sans-serif;
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
     font-weight: 700;
     margin: 0;
     color: var(--pine);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
   p {
     margin: 0;
@@ -181,14 +186,20 @@
 .btn svg { flex: none; }
 
 /* Header */
+/* Header - Pine Labs Transparent Glass Navbar */
 header {
   position: sticky; top: 0; z-index: 60;
-  background: rgba(243, 246, 245, 0.86);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--line);
-  transition: box-shadow .25s ease;
+  background: transparent;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid transparent;
+  transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
-header.scrolled { box-shadow: 0 8px 28px -20px rgba(14,51,49,0.35); }
+header.scrolled {
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.08);
+}
 .nav { display: flex; align-items: center; justify-content: space-between; height: 76px; }
 .logo { display: flex; align-items: center; flex-shrink: 0; }
 .logo-img { height: 32px; width: auto; display: block; flex-shrink: 0; object-fit: contain; transition: transform .2s ease; }
@@ -686,13 +697,85 @@ footer { padding: 72px 0 36px; border-top: 1px solid var(--line); }
 .foot-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 28px; border-top: 1px solid var(--line); font-size: 12.5px; color: var(--ink-soft); flex-wrap: wrap; gap: 12px; }
 
 
+/* Pine Labs Style Smooth Animations & Micro-Interactions */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(36px);
-  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(32px) scale(0.98);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
 }
-[data-reveal].in-view { opacity: 1; transform: translateY(0); }
+[data-reveal].in-view {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.FadeInUp {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.FadeInUp.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.MaskedReveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+.MaskedReveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Pine Labs Spotlight Glow & Card Hover Elevation */
+.kpi-card, .svc-card, .ticket, .cov-card, .eco-card, .download-band, .std-col, .verify-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background-color 0.35s ease !important;
+}
+
+.kpi-card:hover, .svc-card:hover, .ticket:hover, .eco-card:hover, .verify-card:hover {
+  transform: translateY(-5px) scale(1.015);
+  box-shadow: 0 20px 40px -15px rgba(30, 74, 32, 0.12);
+}
+
+/* Pine Labs Mouse Spotlight Radial Overlay */
+.kpi-card::after, .svc-card::after, .ticket::after, .cov-card::after, .eco-card::after, .verify-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(350px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(119, 195, 107, 0.15), transparent 80%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.kpi-card:hover::after, .svc-card:hover::after, .ticket:hover::after, .cov-card:hover::after, .eco-card:hover::after, .verify-card:hover::after {
+  opacity: 1;
+}
+
+.btn-primary, .btn-ghost {
+  font-family: var(--font-poppins), "Poppins", sans-serif !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease !important;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 12px 28px -8px rgba(30, 74, 32, 0.35);
+}
+.btn-primary:active {
+  transform: translateY(0) scale(0.98);
+}
+.btn-ghost:hover {
+  transform: translateY(-3px) scale(1.03);
+}
 
 @media (max-width: 1020px) {
   .hero-grid { grid-template-columns: 1fr; }
